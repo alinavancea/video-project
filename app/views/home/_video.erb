@@ -1,6 +1,7 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-
-<%= "_video" %>
+<div class="video">
+  <% if @unlocked_video.present?  %>
+    <%= @unlocked_video.text.html_safe %>
+  <% else %>
+    No video available
+  <% end %>
+</div>
