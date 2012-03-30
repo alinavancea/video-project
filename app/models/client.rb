@@ -7,4 +7,7 @@ class Client < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   has_many :client_hashes
+  def display_name
+        email
+  end
 end
