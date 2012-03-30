@@ -1,6 +1,6 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-
-<%= "_comment" %>
+<div>
+    <%= form_tag(submit_comment_path) do%>
+        <%= textfield_tag :text %>
+        <%= submit_tag "Tweet" %>
+    <% end %>
+</div>
