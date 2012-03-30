@@ -1,6 +1,5 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-
-<%= "_client_videos" %>
+<div class="client-videos">
+  <% @videos.each do |video| %>
+    <%= video.text.html_safe %>
+  <% end %>
+</div>
