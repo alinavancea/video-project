@@ -15,5 +15,6 @@ class HomeController < ApplicationController
 
   def submit_comment
       puts params
+      redirect_to root_path
   end
 end

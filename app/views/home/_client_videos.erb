@@ -1,5 +1,5 @@
 <div class="client-videos">
   <% @videos.each do |video| %>
-    <%= video.text.html_safe %>
+    <iframe class="small" src="<%= video.text %>" frameborder="0" allowfullscreen></iframe>
   <% end %>
 </div>
