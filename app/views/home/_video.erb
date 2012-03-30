@@ -1,6 +1,11 @@
-<%#
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-%>
-
-<%= "_video" %>
+<div class="video">
+  <% if @unlocked_video.present?  %>
+    <% if  @unlocked_video.is_locked? %>
+      <div class="lock"></div>
+    <% end %>
+    <iframe class="big" src="<%= @unlocked_video.text %>?wmode=opaque" frameborder="0" allowfullscreen>
+    </iframe>
+  <% else %>
+    No video available
+  <% end %>
+</div>
