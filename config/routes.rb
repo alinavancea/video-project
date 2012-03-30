@@ -1,4 +1,6 @@
 VideoProject::Application.routes.draw do
+  devise_for :clients, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
