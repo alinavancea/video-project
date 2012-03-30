@@ -1,4 +1,15 @@
 ActiveAdmin::Dashboards.build do
+  
+  section "Recent Hashes" do
+       ul do
+         ClientHash.order('id desc').limit(10) do |clienthash|
+           #li link_to(clienthash.text, admin_client_hash_path(clienthash.id))
+           pre clienthash.text.as_s
+           
+         end
+       end
+     end
+  
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
