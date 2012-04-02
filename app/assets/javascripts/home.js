@@ -6,7 +6,15 @@ $(document).ready(function(){
             dataType: 'json',
             data: $('#submit_comment_form').serialize(),
             success: function(result){
-                $('#counter').html(result.counter);
+                $('#counter').html("There are "+result.counter+" comments.");
+
+                var comments = "";
+                for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
+                    comments += "<div>"+result.comments[i].text+"</div><br/>";
+                $('#show_comments').html(comments);
+
+                $('#text').attr("value","#1 ");
+                
                 unlock_videos(result);
             }
         });

@@ -1,16 +1,20 @@
-<div>
 
+<div id="counter">
+    There are <%= @hash.counter %> comments.
+</div>
+<br/>
+
+<div>
     <%= form_tag(submit_comment_path,:id => 'submit_comment_form') do %>
-        <%= text_field_tag "text" %>
+        <%= text_field_tag "text", "#1 " %>
         <%= hidden_field_tag 'hash_id', @hash.id %>
         <%= submit_tag "Tweet", :id => "submit_comment" %>
     <% end %>
 </div>
-<div id="counter">
-    <%= @hash.counter %>
-</div>
+<br/>
+
 <div id="show_comments">
     <% @hash.comments.find(:all,:order => "id DESC", :limit => 5).each do |com| %>
-    <div><%= com.text %></div><br/>
+        <div><%= com.text %></div><br/>
     <% end %>
 </div>
