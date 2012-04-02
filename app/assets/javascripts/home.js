@@ -15,11 +15,12 @@ $(document).ready(function(){
 
     // on click on small video play video in the large iframe
     $(".small" ).click( function(event){
-        var unlocked_iframe = $("#unlocked_iframe");
+        var unlocked_iframe = $(".no-video");
         var image_url = $( this ).attr("src");
         console.log( image_url );
         console.log( $( this ).attr( "id" ) )
-        unlocked_iframe.attr("src", get_embed_video_url( image_url )  );
+        //unlocked_iframe.attr("src", get_embed_video_url( image_url )  );
+        unlocked_iframe.html("<iframe id='unlocked_iframe' class='big' src=' " + get_embed_video_url( image_url) +"' frameborder='0' allowfullscreen>");
     });
 });
 // unlock videos

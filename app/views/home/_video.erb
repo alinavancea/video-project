@@ -1,8 +1,10 @@
 <div class="video">
-  <% if @unlocked_video.present?  %>
-      <iframe id="unlocked_iframe" class="big" src="<%= @unlocked_video.embed_url %>" frameborder="0" allowfullscreen>
-    </iframe>
-  <% else %>
-    No video available
-  <% end %>
+<%# if @unlocked_video.present?  %>   
+
+<%# else %>
+<%#*No video available%>
+<%# end %>
+    <div class="no-video"></div>
+    
 </div>
+<!--<iframe id="unlocked_iframe" class="big" src="<%#= @unlocked_video.embed_url %>" frameborder="0" allowfullscreen></iframe>--!>

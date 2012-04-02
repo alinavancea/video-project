@@ -6,6 +6,8 @@ $big_height: 315px
 $small_width: 360px
 $small_height: 200px
 
+img
+    z-index: 0
 .video
     width: 600px
     height: 400px
@@ -22,7 +24,7 @@ $small_height: 200px
         height: $small_height
         background-image: image-url("/assets/lock_s.png")
         background-repeat: no-repeat
-        position: absolute
+        //position: absolute
         z-index: 99
 
 .big
@@ -36,3 +38,12 @@ $small_height: 200px
     height: $small_height
     z-index: 1
     position: relative
+
+.no-video
+    width: $big_width
+    height: $big_height
+    background-color: black
+
+.small-video
+    width: $small_width
+    height: $small_height
