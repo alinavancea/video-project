@@ -7,26 +7,32 @@ $small_width: 360px
 $small_height: 200px
 
 .video
-  width: 600px
-  height: 400px
+    width: 600px
+    height: 400px
 
-  .lock
-    width: 100px
-    height: 100px
-    background-image: image-url("/assets/lock_s.png")
+.video_layer
+    width: $small_width
+    height: $small_height
     position: absolute
-    top: $big_height/2 - 50px
-    left: $big_width/2 - 50px
-    z-index: 99
+    border: 1px solid black
+
+.client-videos
+    .lock
+        width: $small_width
+        height: $small_height
+        background-image: image-url("/assets/lock_s.png")
+        background-repeat: no-repeat
+        position: absolute
+        z-index: 99
 
 .big
-  width: $big_width
-  height: $big_height
-  z-index: 1
-  position: relative
+    width: $big_width
+    height: $big_height
+    z-index: 1
+    position: relative
 
 .small
-  width: $small_width
-  height: $small_height
-  z-index: 1
-  position: relative
+    width: $small_width
+    height: $small_height
+    z-index: 1
+    position: relative

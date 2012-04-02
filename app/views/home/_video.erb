@@ -1,9 +1,6 @@
 <div class="video">
   <% if @unlocked_video.present?  %>
-    <% if  @unlocked_video.is_locked? %>
-      <div class="lock"></div>
-    <% end %>
-    <iframe class="big" src="<%= @unlocked_video.text %>?wmode=opaque" frameborder="0" allowfullscreen>
+      <iframe id="unlocked_iframe" class="big" src="<%= @unlocked_video.embed_url %>" frameborder="0" allowfullscreen>
     </iframe>
   <% else %>
     No video available
