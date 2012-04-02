@@ -1,6 +1,28 @@
+<script language="Javascript">
+    $(document).ready(function(){
+        $('#submit_comment').click(function(){
+            $.ajax({
+                url: '<%= submit_comment_path %>',
+                type: 'post',
+                dataType: 'json',
+                data: $('#submit_comment_form').serialize(),
+                success: function(result){
+                    $('#counter').html(result.counter)
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
 <div>
-    <%= form_tag(submit_comment_path) do%>
-        <%= text_field_tag "comment[text]" %>
-        <%= submit_tag "Tweet" %>
+
+    <%= form_tag(submit_comment_path,:id => 'submit_comment_form') do %>
+        <%= text_field_tag "text" %>
+        <%= hidden_field_tag 'hash_id', @hash.id %>
+        <%= submit_tag "Tweet", :id => "submit_comment" %>
     <% end %>
+</div>
+<div id="counter">
+    <%= @hash.counter %>
 </div>
