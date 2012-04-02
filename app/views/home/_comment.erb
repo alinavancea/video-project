@@ -9,3 +9,8 @@
 <div id="counter">
     <%= @hash.counter %>
 </div>
+<div id="show_comments">
+    <% @hash.comments.find(:all,:order => "id DESC", :limit => 5).each do |com| %>
+    <div><%= com.text %></div><br/>
+    <% end %>
+</div>
