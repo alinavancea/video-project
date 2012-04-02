@@ -2,9 +2,9 @@ ActiveAdmin::Dashboards.build do
   
   section "Recent Hashes" do
        ul do
-         ClientHash.order('id desc').limit(10) do |clienthash|
+         ClientHash.order('id desc').limit(10).each do |clienthash|
            #li link_to(clienthash.text, admin_client_hash_path(clienthash.id))
-           pre clienthash.text.as_s
+           pre clienthash.text
            
          end
        end
