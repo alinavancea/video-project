@@ -27,7 +27,8 @@ class HomeController < ApplicationController
             end
             
         end
-        render :layout => false, :text => ClientHash.find(hash_id).to_json
+        hash = ClientHash.find(hash_id)
+        render :layout => false, :text => hash.to_json(:include => :comments)
 
 
         #begin
