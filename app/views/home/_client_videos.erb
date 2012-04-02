@@ -1,5 +1,6 @@
 <div class="client-videos">
-  <% @videos.each do |video| %>
-    <iframe class="small" src="<%= video.text %>" frameborder="0" allowfullscreen></iframe>
+  <% @videos.each_with_index do |video, i| %>
+    <div class="lock" id="<%= i %>"></div>
+    <img class="small" id="samll_image_<%= i.to_s %>" src="<%= video.image_url %>" />
   <% end %>
 </div>
