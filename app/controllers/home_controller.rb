@@ -48,7 +48,7 @@ class HomeController < ApplicationController
     def is_unlocked
         video = EmbedVideo.find(params[:video_id])
         videos = videos_as_hash(video.client_hash)
-        video_h = videos.detect{ |v| v[:id] = video.id }
+        video_h = videos.detect{ |v| v[:id] == video.id }
         if !video_h[:is_locked]
             message = "ok"
         else
