@@ -6,7 +6,7 @@
 
 <div>
     <%= form_tag(submit_comment_path,:id => 'submit_comment_form') do %>
-        <%= text_field_tag "text", "#1 " %>
+        <%= text_field_tag "text", "##{@hash.text} " %>
         <%= hidden_field_tag 'hash_id', @hash.id %>
         <%= submit_tag "Tweet", :id => "submit_comment" %>
     <% end %>

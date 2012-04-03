@@ -13,7 +13,7 @@ $(document).ready(function(){
                     comments += "<div>"+result.comments[i].text+"</div><br/>";
                 $('#show_comments').html(comments);
 
-                $('#text').attr("value","#1 ");
+                $('#text').attr("value","#"+result.text+" ");
                 
                 unlock_videos(result);
             }
