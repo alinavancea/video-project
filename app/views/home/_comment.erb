@@ -1,4 +1,4 @@
-
+<% if (@hash.unlock_rule*(@hash.counter/@hash.unlock_rule+1)) <=  (@hash.counter/@hash.unlock_rule)%>
 <div id="counter">
     There are <%= @hash.counter %> comments.<br/>
     You need <%= @hash.unlock_rule*(@hash.counter/@hash.unlock_rule+1)-@hash.counter %> comments more to unlock video number <%= @hash.counter/@hash.unlock_rule+1 %>.<br/>
@@ -6,7 +6,7 @@
 </div>
 <br/>
 
-<div>
+<div id="form">
     <%= form_tag(submit_comment_path,:id => 'submit_comment_form') do %>
         <%= text_field_tag "text", "##{@hash.text} " %>
         <%= hidden_field_tag 'hash_id', @hash.id %>
@@ -14,7 +14,15 @@
     <% end %>
 </div>
 <br/>
-
+<% else %>
+<div id="counter">
+</div>
+<br/>
+<div id="form">
+    <font color='red'>You reached the limit of videos</font>
+</div>
+<br/>
+<% end  %>
 <div id="show_comments">
     <% @hash.comments.find(:all,:order => "id DESC", :limit => 5).each do |com| %>
         <div><%= com.text %></div><br/>

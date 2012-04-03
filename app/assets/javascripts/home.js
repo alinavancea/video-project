@@ -8,15 +8,25 @@ $(document).ready(function(){
             success: function(result){
                 unlock_videos(result);
 
-                var calc2 = parseInt(result.counter/result.unlock_rule)+1;
-                var calc1 = result.unlock_rule*(calc2)-result.counter;
-                $('#counter').html("There are "+result.counter+" comments.<br/>You need "+calc1 +" comments more to unlock video number "+ calc2 +".<br/>    Needed "+ result.unlock_rule +" comments per video.");
+                console.log(result);
 
-                var comments = "";
-                for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
-                    comments += "<div>"+result.comments[i].text+"</div><br/>";
-                $('#show_comments').html(comments);
-                $('#text').attr("value","#"+result.text+" ");
+                var videos = parseInt(result.counter/result.unlock_rule);
+                var total_comments = result.unlock_rule*(videos+1);
+                if(videos <= total_comments)
+                {
+                    $('#form').html("<font color='red'>You reached the limit of videos</font>");
+                    $('#counter').html("");
+                }
+                else
+                {
+                    $('#counter').html("There are "+result.counter+" comments.<br/>You need "+ total_comments-result.counter +" comments more to unlock video number "+ videos +".<br/>    Needed "+ result.unlock_rule +" comments per video.");
+
+                    var comments = "";
+                    for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
+                        comments += "<div>"+result.comments[i].text+"</div><br/>";
+                    $('#show_comments').html(comments);
+                    $('#text').attr("value","#"+result.text+" ");
+                }
             }
         });
         return false;
@@ -24,8 +34,8 @@ $(document).ready(function(){
 
     // on click on small video play video in the large iframe
     $(".small" ).click( function(){
-                    var unlocked_iframe = $(".no-video");
-                    var image_url = $( this ).attr("src");
+        var unlocked_iframe = $(".no-video");
+        var image_url = $( this ).attr("src");
         $.ajax({
             url: "/is_unlocked?video_id=" + $( this ).attr("rel"),
             type: 'POST',
@@ -37,9 +47,9 @@ $(document).ready(function(){
                     unlocked_iframe.html("<iframe id='unlocked_iframe' class='big' src=' " + get_embed_video_url( image_url) +"' frameborder='0' allowfullscreen></iframe>");
                 }
                 else
-                    {
-                        alert("This video is unlocked!");
-                    }
+                {
+                    alert("This video is unlocked!");
+                }
             }
         });
         
