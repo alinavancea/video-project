@@ -1,19 +1,15 @@
 class EmbedVideo < ActiveRecord::Base
     belongs_to :client_hash
     validates :text, :presence => true
+    #@@is_locked = true
+   # after_create :lock
   
-    after_create :lock
-  
-    attr_accessor :is_locked
+    #attr_accessor :is_locked
 
     def small_video
     
     end
-
-    def initialize
-        lock
-    end
-
+    
     def image_url
         img_url = ""
         if self.text.present?
@@ -31,16 +27,25 @@ class EmbedVideo < ActiveRecord::Base
         end
         url
     end
-  
-    def is_locked?
-        self.is_locked
-    end
 
-    def unlock
-        self.is_locked = false
-    end
-  
-    def lock
-        self.is_locked = true
-    end
+#    def is_locked
+#
+#    end
+#
+#    def is_locked=(val)
+#        @is_locked = val
+#    end
+#
+#    def is_locked?
+#        @is_locked
+#    end
+#
+#    def unlock
+#        self.is_locked = false
+#    end
+#
+#    def lock
+#        self.is_locked = true
+#        self.save
+#    end
 end
