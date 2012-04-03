@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $big_width: 560px
 $big_height: 315px
-$small_width: 360px
-$small_height: 200px
+$small_width: 300px
+$small_height: 180px
 
 img
     z-index: 0
@@ -18,14 +18,8 @@ img
     position: absolute
     border: 1px solid black
 
-.client-videos
-    .lock
-        width: $small_width
-        height: $small_height
-        background-image: image-url("/assets/lock_s.png")
-        background-repeat: no-repeat
-        //position: absolute
-        z-index: 99
+
+
 
 .big
     width: $big_width
@@ -44,6 +38,26 @@ img
     height: $big_height
     background-color: black
 
-.small-video
-    width: $small_width
-    height: $small_height
+.client-videos
+    border: 1px solid red
+    .small-video
+        width: $small_width
+        height: $small_height
+        float: left
+        margin: 5px
+
+        .lock
+            width: $small_width
+            height: $small_height
+            background-image: image-url("/assets/lock_s.png")
+            background-position: center
+            background-repeat: no-repeat
+            position: absolute
+            z-index: 99
+        .img
+            width: $small_width
+            height: $small_height
+            position: absolute
+
+.clear
+    clear: both

@@ -6,6 +6,8 @@ $(document).ready(function(){
             dataType: 'json',
             data: $('#submit_comment_form').serialize(),
             success: function(result){
+                unlock_videos(result);
+                
                 $('#counter').html("There are "+result.counter+" comments.");
 
                 var comments = "";
@@ -15,7 +17,7 @@ $(document).ready(function(){
 
                 $('#text').attr("value","#1 ");
                 
-                unlock_videos(result);
+                
             }
         });
         return false;

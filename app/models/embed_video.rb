@@ -10,6 +10,10 @@ class EmbedVideo < ActiveRecord::Base
     
     end
 
+    def initialize
+        lock
+    end
+
     def image_url
         img_url = ""
         if self.text.present?
