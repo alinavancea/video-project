@@ -1,6 +1,8 @@
 
 <div id="counter">
-    There are <%= @hash.counter %> comments.
+    There are <%= @hash.counter %> comments.<br/>
+    You need <%= @hash.unlock_rule*(@hash.counter/@hash.unlock_rule+1)-@hash.counter %> comments more to unlock video number <%= @hash.counter/@hash.unlock_rule+1 %>.<br/>
+    Needed <%= @hash.unlock_rule %> comments per video.
 </div>
 <br/>
 
