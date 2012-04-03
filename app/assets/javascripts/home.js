@@ -15,7 +15,7 @@ $(document).ready(function(){
                     comments += "<div>"+result.comments[i].text+"</div><br/>";
                 $('#show_comments').html(comments);
 
-                $('#text').attr("value","#1 ");
+                $('#text').attr("value","#oooo");
                 
                 
             }
@@ -24,19 +24,32 @@ $(document).ready(function(){
     });
 
     // on click on small video play video in the large iframe
-    $(".small" ).click( function(event){
-        var unlocked_iframe = $(".no-video");
-        var image_url = $( this ).attr("src");
-        console.log( image_url );
-        console.log( $( this ).attr( "id" ) )
-        //unlocked_iframe.attr("src", get_embed_video_url( image_url )  );
-        unlocked_iframe.html("<iframe id='unlocked_iframe' class='big' src=' " + get_embed_video_url( image_url) +"' frameborder='0' allowfullscreen>");
+    $(".small" ).click( function(){
+                    var unlocked_iframe = $(".no-video");
+                    var image_url = $( this ).attr("src");
+        $.ajax({
+            url: "/is_unlocked?video_id=" + $( this ).attr("rel"),
+            type: 'POST',
+            success: function( result ){
+                if ( result == "ok" )
+                {
+                    console.log("ok")
+
+                    unlocked_iframe.html("<iframe id='unlocked_iframe' class='big' src=' " + get_embed_video_url( image_url) +"' frameborder='0' allowfullscreen></iframe>");
+                }
+                else
+                    {
+                        alert("This video is unlocked!");
+                    }
+            }
+        });
+        
     });
 });
 // unlock videos
 function unlock_videos(result)
 {
-    console.log(result);
+    //console.log(result);
     var num_videos = parseInt( parseInt( result.counter ) / parseInt( result.unlock_rule ) );
     var i = 0;
     var videos = $(".small");
@@ -46,7 +59,6 @@ function unlock_videos(result)
         var lock = $(".lock#" + i);
         if( lock.length != 0 )
         {
-
             $(".lock#" + i).removeClass("lock");
         }
     }
