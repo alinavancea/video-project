@@ -12,21 +12,13 @@ $(document).ready(function(){
 
                 var videos = parseInt(result.counter/result.unlock_rule);
                 var total_comments = result.unlock_rule*(videos+1);
-                if(videos <= total_comments)
-                {
-                    $('#form').html("<font color='red'>You reached the limit of videos</font>");
-                    $('#counter').html("");
-                }
-                else
-                {
-                    $('#counter').html("There are "+result.counter+" comments.<br/>You need "+ total_comments-result.counter +" comments more to unlock video number "+ videos +".<br/>    Needed "+ result.unlock_rule +" comments per video.");
+                $('#counter').html("There are "+result.counter+" comments.<br/>You need "+ (total_comments-result.counter) +" comments more to unlock video number "+ videos +".<br/>    Needed "+ result.unlock_rule +" comments per video.");
 
-                    var comments = "";
-                    for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
-                        comments += "<div>"+result.comments[i].text+"</div><br/>";
-                    $('#show_comments').html(comments);
-                    $('#text').attr("value","#"+result.text+" ");
-                }
+                var comments = "";
+                for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
+                    comments += "<div>"+result.comments[i].text+"</div><br/>";
+                $('#show_comments').html(comments);
+                $('#text').attr("value","#"+result.text+" ");
             }
         });
         return false;
