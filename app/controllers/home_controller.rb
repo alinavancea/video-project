@@ -3,11 +3,17 @@ class HomeController < ApplicationController
         hash_id = params[:hash_id]
         @videos = []
         @hash = {}
+        unlocked_videos = []
         begin
             @hash  = ClientHash.find(hash_id)
-            @unlocked_video = @hash .embed_videos.first
-            count = @hash .counter
-            @videos = @hash .embed_videos
+            @unlocked_video = @hash.embed_videos.first
+            count = @hash.counter
+            @videos = @hash.embed_videos
+            num = count/@hash.unlock_rule
+            unlocked_videos = @videos.take(num)
+            unlocked_videos.each do |v|
+                v.unlock
+            end
         rescue ActiveRecord::RecordNotFound
       
         end
