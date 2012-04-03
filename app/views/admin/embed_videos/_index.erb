@@ -1,0 +1,43 @@
+<script type="text/javascript" >
+    $(function() {
+        $("#sortable").sortable({
+            update: function(event, ui) {
+                var result = $(this).sortable('serialize');
+                $.ajax({
+                    url: '<%= save_position_path %> ',
+                    type: 'post',
+                    dataType: 'json',
+                    data: result
+                });
+            }          
+            
+        }).disableSelection();
+    });
+</script>
+
+
+<table border="0" cellspacing="0" cellpadding="0" class="index_table" paginator="true">
+    <thead>
+        <tr>
+            <th class="name">Video Text</th>
+            <th class="name">Created at</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="sortable">
+        <% EmbedVideo.find(:all,:order => "position").each do |ev|   %>
+            <tr id="hash_<%= ev.id %>">
+                <td>
+                    <%= ev.text %>
+                </td>
+                <td>
+                    <%= ev.created_at %>
+                </td>
+                <td>
+                    <a class="member_link view_link left" href="<%= admin_embed_video_path(ev.id) %>">View</a>
+                    <a class="member_link view_link left" href="<%= edit_admin_embed_video_path(ev.id) %>" >Edit</a>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
