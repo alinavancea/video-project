@@ -9,4 +9,9 @@ class ClientHash < ActiveRecord::Base
   end
 
   validates :text, :presence => true
+
+  def reset_counter
+      self.counter = 0
+      self.save
+  end
 end

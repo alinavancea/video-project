@@ -2,7 +2,7 @@
     <% @videos.each_with_index do |video, i| %>
         <div class="small-video">
             <% if video.is_locked? %>
-            <div class="lock" id="<%= i %>"></div>
+                <div class="lock" id="<%= i %>"></div>
             <% end %>
             <img class="small" id="samll_image_<%= i.to_s %>" src="<%= video.image_url %>" />
         </div>
