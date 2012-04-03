@@ -4,7 +4,7 @@
             update: function(event, ui) {
                 var result = $(this).sortable('serialize');
                 $.ajax({
-                    url: '<%= save_position_path %> ',
+                    url: '<%= save_videos_position_path %> ',
                     type: 'post',
                     dataType: 'json',
                     data: result
