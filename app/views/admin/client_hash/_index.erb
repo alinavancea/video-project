@@ -36,6 +36,7 @@
                 <td>
                     <a class="member_link view_link left" href="<%= admin_client_hash_path(ch.id) %>">View</a>
                     <a class="member_link view_link left" href="<%= edit_admin_client_hash_path(ch.id) %>" >Edit</a>
+                    <a class="member_link delete_link left" href="<%= admin_client_hash_path(ch.id) %>" data-method="delete" data-confirm="Are you sure you want to delete <%= ch.text %> ?">Delete</a>
                 </td>
             </tr>
         <% end %>
