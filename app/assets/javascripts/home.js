@@ -7,8 +7,10 @@ $(document).ready(function(){
             data: $('#submit_comment_form').serialize(),
             success: function(result){
                 unlock_videos(result);
-                
-                $('#counter').html("There are "+result.counter+" comments.");
+
+                var calc2 = parseInt(result.counter/result.unlock_rule)+1;
+                var calc1 = result.unlock_rule*(calc2)-result.counter;
+                $('#counter').html("There are "+result.counter+" comments.<br/>You need "+calc1 +" comments more to unlock video number "+ calc2 +".<br/>    Needed "+ result.unlock_rule +" comments per video.");
 
                 var comments = "";
                 for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
