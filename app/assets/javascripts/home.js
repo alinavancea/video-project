@@ -14,10 +14,7 @@ $(document).ready(function(){
                 for(var i=result.counter-1;i>=0 && i>=result.counter-5;--i)
                     comments += "<div>"+result.comments[i].text+"</div><br/>";
                 $('#show_comments').html(comments);
-
-                $('#text').attr("value","#oooo");
-                
-                
+                $('#text').attr("value","#"+result.text+" ");
             }
         });
         return false;
