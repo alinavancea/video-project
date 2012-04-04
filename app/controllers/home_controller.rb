@@ -1,45 +1,13 @@
 class HomeController < ApplicationController
     def index
         hash_id = params[:hash_id]
-        videos = []
         @hash = {}
-        unlocked_videos = []
         @all_videos = []
         begin
             
             @hash  = ClientHash.find(hash_id)
             @unlocked_video = @hash.embed_videos.first
-
-            @all_videos = videos_as_hash( @hash )
-
-            #            count = @hash.counter
-            #            videos = @hash.embed_videos
-            #            num = count/@hash.unlock_rule
-            #            unlocked_videos = videos.take(num)
-            #            videos = videos - unlocked_videos
-            #
-            #            unlocked_videos.each do |video|
-            #                video_hash = {}
-            #                video_hash =
-            #                   {
-            #                    :id => video.id,
-            #                    :image_url => video.image_url,
-            #                    :is_locked => false
-            #                   }
-            #                   @all_videos << video_hash
-            #            end
-            #
-            #            videos.each do |video|
-            #                video_hash = {}
-            #                video_hash =
-            #                   {
-            #                    :id => video.id,
-            #                    :image_url => video.image_url,
-            #                    :is_locked => true
-            #                   }
-            #                   @all_videos << video_hash
-            #            end
-            
+            @all_videos = videos_as_hash( @hash )   
         rescue ActiveRecord::RecordNotFound
       
         end
@@ -52,7 +20,7 @@ class HomeController < ApplicationController
         if !video_h[:is_locked]
             message = "ok"
         else
-            message="locked"
+            message = "locked"
         end
         render :text => message
     end
@@ -87,7 +55,7 @@ class HomeController < ApplicationController
     def videos_as_hash( hash )
         all_videos = []
         count = hash.counter
-        videos = hash.embed_videos
+        videos = hash.embed_videos.order(:position)
         num = count/hash.unlock_rule
         unlocked_videos = videos.take(num)
         videos = videos - unlocked_videos
