@@ -31,7 +31,9 @@ ActiveAdmin.register ClientHash do
         def delete_comment
 
             client_hash = ClientHash.find(params[:client_id])
-            client_hash.counter -= 1
+            if client_hash.counter > 0
+                client_hash.counter -= 1
+            end
             client_hash.save
 
             comment = Comment.find(params[:id])
@@ -74,7 +76,7 @@ ActiveAdmin.register ClientHash do
                     li link_to( "Delete", delete_comment_path(c.id,:client_id => params[:id]), :method => :post, :confirm => 'Are you sure you want to delete this comment?')
                 end
             end
-        end                
+        end
     end
     
     sidebar "Videos", :only => [:show] do
@@ -83,7 +85,7 @@ ActiveAdmin.register ClientHash do
     end
     
     action_item :only => [:show,:edit] do
-      link_to "Reset Counter", reset_counter_path(params[:id]), :method => :post
+        link_to "Reset Counter", reset_counter_path(params[:id]), :method => :post
     end
 
 end
