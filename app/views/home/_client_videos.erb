@@ -7,6 +7,10 @@
             <img alt="video image" rel="<%= video[:id] %>" class="small" id="samll_image_<%= i.to_s %>" src="<%= video[:image_url] %>" />
         </div>
     <% end %>
-    
+    <% if @next_unlock.present? %>
+        <div class="next-unlock">
+            <img alt="video image" rel="<%= @next_unlock[:id] %>" class="" id="" src="<%= @next_unlock[:image_url] %>" />
+        </div>
+    <% end %>
     <div class="clear"></div>
 </div>

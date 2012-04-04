@@ -3,13 +3,15 @@ class HomeController < ApplicationController
         hash_id = params[:hash_id]
         @hash = {}
         @all_videos = []
+        @next_unlock = nil
         begin
             
             @hash  = ClientHash.find(hash_id)
             @unlocked_video = @hash.embed_videos.first
-            @all_videos = videos_as_hash( @hash )   
+            @all_videos = videos_as_hash( @hash )
+            @next_unlock = @all_videos.detect{ |v| v[:is_locked] == true }
         rescue ActiveRecord::RecordNotFound
-      
+
         end
     end
 
