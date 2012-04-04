@@ -43,13 +43,8 @@ ActiveAdmin.register ClientHash do
     end
     
     sidebar "Videos", :only => [:show] do
-          h3 "Videos"
-            ul :class => "nomarker-ul" do
-                resource.embed_videos.each do |v|
-                    li link_to( v.text, admin_embed_video_path(v) )
-                end
-            end
-        
-        end
+      div  render :partial => "admin/client_hash/show_embed_video",:class => "main_content_wrapper"
+                    
+    end
 
 end
