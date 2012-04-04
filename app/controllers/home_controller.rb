@@ -35,7 +35,7 @@ class HomeController < ApplicationController
         ClientHash.all.each do |hash|
             if comment.include? '#'+hash.text
                 hash.counter =hash.counter.to_i+1
-                hash.comments.create(:text => comment)
+                hash.comments.create(:text => comment,:client_hash_id => hash.id)
                 hash.save
             end
             
