@@ -10,6 +10,8 @@ class HomeController < ApplicationController
             @unlocked_video = @hash.embed_videos.first
             @all_videos = videos_as_hash( @hash )
             @next_unlock = @all_videos.detect{ |v| v[:is_locked] == true }
+            puts @next_unlock
+            puts @all_videos.delete(@next_unlock)
         rescue ActiveRecord::RecordNotFound
 
         end
@@ -68,7 +70,8 @@ class HomeController < ApplicationController
                {
                 :id => video.id,
                 :image_url => video.image_url,
-                :is_locked => false
+                :is_locked => false,
+                :position => video.position
             }
             all_videos << video_hash
         end

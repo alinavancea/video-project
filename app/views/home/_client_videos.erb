@@ -1,15 +1,20 @@
 <div class="client-videos">
-    <% @all_videos.each_with_index do |video, i| %>
-        <div class="small-video">
-            <% if video[:is_locked] %>
-            <div class="lock" id="<%= i %>"></div>
-            <% end %>
-            <img alt="video image" rel="<%= video[:id] %>" class="small" id="samll_image_<%= i.to_s %>" src="<%= video[:image_url] %>" />
-        </div>
-    <% end %>
+    <div class="group">
+        <% @all_videos.each_with_index do |video, i| %>
+            <div class="small-video">
+                <% if video[:is_locked] %>
+                    <div class="lock" id="<%= i %>"></div>
+                <% end %>
+                <img alt="video image" rel="<%= video[:id] %>" class="small" id="samll_image_<%= video[:position] %>" src="<%= video[:image_url] %>" />
+            </div>
+        <% end %>
+        <div class="clear"></div>
+    </div>
+    
     <% if @next_unlock.present? %>
         <div class="next-unlock">
-            <img alt="video image" rel="<%= @next_unlock[:id] %>" class="" id="" src="<%= @next_unlock[:image_url] %>" />
+            <img alt="video image" rel="<%= @next_unlock[:id] %>" class="small" id="samll_image_<%= @next_unlock[:position]%>"  src="<%= @next_unlock[:image_url] %>" />
+            <div class="lock"></div>
         </div>
     <% end %>
     <div class="clear"></div>
