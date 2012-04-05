@@ -6,7 +6,9 @@ ActiveAdmin.register Comment, :as => "HashComment" do
             client_hash_id = Comment.find(params[:id]).client_hash_id
 
             client_hash = ClientHash.find(client_hash_id)
-            client_hash.counter -= 1
+            if client_hash.counter > 0
+                client_hash.counter -= 1
+            end
             client_hash.save
             
             destroy! do |format|

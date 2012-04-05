@@ -36,6 +36,7 @@
                 <td>
                     <a class="member_link view_link left" href="<%= admin_embed_video_path(ev.id) %>">View</a>
                     <a class="member_link view_link left" href="<%= edit_admin_embed_video_path(ev.id) %>" >Edit</a>
+                    <a class="member_link delete_link left" href="<%= admin_embed_video_path(ev.id) %>" data-method="delete" data-confirm="Are you sure you want to delete <%= ev.text %> ?">Delete</a>
                 </td>
             </tr>
         <% end %>

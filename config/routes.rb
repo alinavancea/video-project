@@ -65,6 +65,7 @@ VideoProject::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
    post 'admin/client_hashes/save_position' => 'admin/client_hashes#save_position', :as => :save_position
    post 'admin/client_hashes/:id/delete_comment' => 'admin/client_hashes#delete_comment', :as => :delete_comment
+   post 'admin/client_hashes/:id/reset_counter' => 'admin/client_hashes#reset_counter', :as => :reset_counter
    post 'admin/embed_videos/save_position' => 'admin/embed_videos#save_position', :as => :save_videos_position
 
 

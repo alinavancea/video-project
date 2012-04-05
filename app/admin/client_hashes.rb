@@ -17,6 +17,7 @@ ActiveAdmin.register ClientHash do
     end
 
     controller do
+        
         def save_position(object={}, &block)
             hash = params[:hash]
             hash.size().times do |i|
@@ -26,16 +27,26 @@ ActiveAdmin.register ClientHash do
             end
             render :nothing => true
         end
+        
         def delete_comment
 
             client_hash = ClientHash.find(params[:client_id])
-            client_hash.counter -= 1
+            if client_hash.counter > 0
+                client_hash.counter -= 1
+            end
             client_hash.save
 
             comment = Comment.find(params[:id])
             comment.destroy
             
-            redirect_to admin_client_hash_path(params[:client_id])
+            redirect_to :back
+        end
+
+        def reset_counter
+            client = ClientHash.find(params[:id])
+            client.reset_counter
+            
+            redirect_to :back
         end
     end
     
@@ -47,13 +58,14 @@ ActiveAdmin.register ClientHash do
                     row("Hash Text")     { resource.text }
                     row("Created At")    { resource.created_at }
                     row("Unlock Rule")    { resource.unlock_rule }
+                    row("Counter")    { resource.counter }
                 end
             end
         end
             
 
         section  :class => "panel panel-table" do
-            h3 "#{resource.counter} Comments"
+            h3 "Comments"
             ul :class => "nomarker-ul left" do
                 resource.comments.each do |c|
                     li link_to( c.text, admin_hash_comment_path(c) )
@@ -64,12 +76,16 @@ ActiveAdmin.register ClientHash do
                     li link_to( "Delete", delete_comment_path(c.id,:client_id => params[:id]), :method => :post, :confirm => 'Are you sure you want to delete this comment?')
                 end
             end
-        end                
+        end
     end
     
     sidebar "Videos", :only => [:show] do
         div  render :partial => "admin/client_hash/show_embed_video",:class => "main_content_wrapper"
                     
+    end
+    
+    action_item :only => [:show,:edit] do
+        link_to "Reset Counter", reset_counter_path(params[:id]), :method => :post
     end
 
 end
